@@ -6,13 +6,6 @@ import os
 import re
 
 class DmesgFile(object):
-    release = None
-    memory = None
-    cpu = None
-    freq = None
-    ncpu = None
-    drivers = set([])
-
     RELEASE_RE = re.compile(r'^(FreeBSD \d+.\d+.*) #\d+.*$')
     MEMORY_RE = re.compile(r'^real memory\s+=\s+(\d+).*$')
     CPU_RE = re.compile(r'^CPU: (.*)$')
@@ -23,6 +16,13 @@ class DmesgFile(object):
     NCPU_RE = re.compile('FreeBSD/SMP: Multiprocessor System Detected: (\d+) CPUs')
 
     def __init__(self, path):
+        self.release = None
+        self.memory = None
+        self.cpu = None
+        self.freq = None
+        self.ncpu = None
+        self.drivers = set([])
+
         self.__path = path
         self.__parse()
 
